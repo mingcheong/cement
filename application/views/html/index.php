@@ -253,27 +253,15 @@ demo.onmouseout=function() {MyMar=setInterval(Marquee,speed)}
             <br>
             <br>
             <table width="89%" border="0" cellspacing="0" cellpadding="0" align="center">
+				<?php foreach ($list['zp'] as $zp){?>	
               <tr> 
                 <td class="unnamed2" height="25"><img src="images/html/6.jpg" width="3" height="6"> 
-                  招聘：中控操作人员</td>
+                  <?php echo $zp['title']?></td>
               </tr>
               <tr> 
                 <td class="unnamed2"><img src="images/html/5a.jpg" width="210" height="3"></td>
               </tr>
-              <tr> 
-                <td class="unnamed2" height="25"><img src="images/html/6.jpg" width="3" height="6"> 
-                  招聘：材料、机电、机械人才</td>
-              </tr>
-              <tr> 
-                <td class="unnamed2"><img src="images/html/5a.jpg" width="210" height="3"></td>
-              </tr>
-              <tr> 
-                <td class="unnamed2" height="25"><img src="images/html/6.jpg" width="3" height="6"> 
-                  招聘：生产岗位人员,计量员 </td>
-              </tr>
-              <tr> 
-                <td class="unnamed2"><img src="images/html/5a.jpg" width="210" height="3"></td>
-              </tr>
+			  <?php }?>
             </table>
           </td>
         </tr>

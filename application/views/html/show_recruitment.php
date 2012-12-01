@@ -86,7 +86,7 @@
                       </tr>
                       <tr bgcolor="#F7F7F7"> 
                         <td height="10" colspan="4"> 
-                          <div align="right"><a href="rencaiyp.htm"><img src="images/html/87.jpg" width="136" height="30" border="0"></a></div>
+                          <div align="right"><a href="<?php echo site_url('html/show/details/'.$art['id'].'/'.$art['cid']);?>"><img src="images/html/87.jpg" width="136" height="30" border="0"></a></div>
                         </td>
                       </tr>
                     </table>

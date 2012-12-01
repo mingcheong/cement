@@ -178,10 +178,14 @@ class Category_model extends CI_Model {
 		foreach ( $category_arr as $category ) {
 			$id = $category ['id'];
 			$name = $category ['name'];
-			if($category['type'] == 2){
-				$url = "index.php/admin/news/modify/$id";
+			if(empty($category['tpl_admin'])){
+				if($category['type'] == 2){
+					$url = "index.php/admin/news/modify/$id";
+				}else{
+					$url = "index.php/admin/news/index/$id";
+				}
 			}else{
-				$url = "index.php/admin/news/index/$id";
+				$url = "index.php/admin/resume/index";
 			}
 			
 			if($category['pid'] == 0){  // 一级栏目才显示字段管理

@@ -38,6 +38,8 @@ class Index extends QT_Controller {
 		$list["qyyw_td"] = $query->row_array();				
 		$query = $this->db->query("select * from news where cid = 217 order by id desc");
 		$list["zdgczs"] = $query->result_array();
+		$query = $this->db->query("select * from news where cid = 222 order by id desc limit 3");
+		$list["zp"] = $query->result_array();				
 		$data['list'] = $list;
 		
 		$this->load->view('html/index',$data);		

@@ -1,10 +1,11 @@
 <?php include "head.php"?>
   <TR> 
-    <TD valign="top" height="148"><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=5,0,0,0" width="1000" height="250">
-        <param name=movie value="images/html/go.swf">
+    
+  <TD valign="top" height="148"><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=5,0,0,0" width="1000" height="250">
+      <param name=movie value="images/html/go4.swf">
         <param name=quality value=high>
         <param name="wmode" value="transparent">
-        <embed src="images/html/go.swf" quality=high pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="1000" height="250" wmode="transparent">
+        <embed src="images/html/go4.swf" quality=high pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="1000" height="250" wmode="transparent">
         </embed> 
       </object></TD>
   </TR>
@@ -20,6 +21,11 @@
                 </tr>
                 <?php include "menu.php"?>
               </table>
+			  	<table  height="100%" border="0" bgcolor="CAEDFE" cellspacing="0" cellpadding="0">
+                <tr> 
+                  <td width="214">&nbsp;</td>
+                </tr>
+              </table>				  
             </div>
           </td>
           <td width="76%" height="601" valign="top"> 
@@ -123,10 +129,10 @@
 						</td>
 					<?php }else{?>
 						<td width="8%" valign="middle" height="5">
-							<a href="<?php echo site_url('html/show/lists/'.$cate['id'].'/'.$cate['pid'].'/'.$first_page);?>"><img src="images/html/shouye.jpg" width="45" height="21" class="unnamed8"></a>
+							<a href="<?php echo site_url('html/show/lists/'.$category['id'].'/'.$category['pid'].'/'.$first_page);?>"><img src="images/html/shouye.jpg" width="45" height="21" class="unnamed8"></a>
 						</td>
 						<td width="9%" valign="middle" height="5">
-							<a href="<?php echo site_url('html/show/lists/'.$cate['id'].'/'.$cate['pid'].'/'.$prev_page);?>"><img src="images/html/shangye.jpg" width="54" height="21" class="unnamed8"></a>
+							<a href="<?php echo site_url('html/show/lists/'.$category['id'].'/'.$category['pid'].'/'.$prev_page);?>"><img src="images/html/shangye.jpg" width="54" height="21" class="unnamed8"></a>
 						</td>			
 					<?php }?>				
 				
@@ -139,10 +145,10 @@
 					</td>
 					<?php }else{?>
 						<td width="9%" valign="middle" height="5">
-							<a href="<?php echo site_url('html/show/lists/'.$cate['id'].'/'.$cate['pid'].'/'.$next_page);?>"><img src="images/html/xiaye.jpg" width="54" height="21" class="unnamed8"></a>					
+							<a href="<?php echo site_url('html/show/lists/'.$category['id'].'/'.$category['pid'].'/'.$next_page);?>"><img src="images/html/xiaye.jpg" width="54" height="21" class="unnamed8"></a>					
 						</td>
 						<td width="3%" valign="middle" height="5">
-							<a href="<?php echo site_url('html/show/lists/'.$cate['id'].'/'.$cate['pid'].'/'.$last_page);?>"><img src="images/html/weiye.jpg" width="45" height="21" class="unnamed8"></a>
+							<a href="<?php echo site_url('html/show/lists/'.$category['id'].'/'.$category['pid'].'/'.$last_page);?>"><img src="images/html/weiye.jpg" width="45" height="21" class="unnamed8"></a>
 						</td>				
 					<?php }?>				
 					<td width="40%" valign="middle" class="unnamed3" height="5"> 　跳转到 
@@ -150,7 +156,7 @@
 					  <?php if($total_page == 1){?>
 						<img src="images/html/go.jpg" width="28" height="18" class="unnamed8">
 					  <?php }else{?>
-						<a href="javascript:goto_page('<?php echo site_url('html/show/lists/'.$cate['id'].'/'.$cate['pid']);?>');"><img src="images/html/go.jpg" width="28" height="18" class="unnamed8"></a>
+						<a href="javascript:goto_page('<?php echo site_url('html/show/lists/'.$category['id'].'/'.$category['pid']);?>');"><img src="images/html/go.jpg" width="28" height="18" class="unnamed8"></a>
 					  <?php }?>
 					  </td>
                       </tr>

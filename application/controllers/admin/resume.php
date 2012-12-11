@@ -124,7 +124,7 @@ class Resume extends QT_Controller {
 			   'postaddress' => $this->input->post('postaddress'),
 			   'postcode' => $this->input->post('postcode')
         	);
-		$this->db->insert('resume', $data);	
+		$data['aa'] = $this->db->insert('resume', $data);	
 		$this->load->view('admin/resume_ok', $data);
 	}
 	

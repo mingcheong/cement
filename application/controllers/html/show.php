@@ -59,12 +59,15 @@ class Show extends QT_Controller {
 		$data['getCategoryList'] = $this->Category_model->getCategoryListByPid($pid);
 		$data['title'] = $this->Category_model->getCategoryById($pid);
 		$data['category'] = $this->Category_model->getCategoryById($cid);
-		
-		$sql_string = "select * from news where cid=".$cid;
+		if(empty($data['category']['pageSize']))
+			$pageSize = 6;
+		else
+			$pageSize = $data['category']['pageSize'];		
+		$sql_string = "select * from news where cid=".$cid." order by addtime desc";
 		$query = $this->db->query($sql_string);
 		$total = $query->num_rows();
 		$config['total_rows'] = $total;	
-		$config['per_page'] = 6; 
+		$config['per_page'] = $pageSize; 
 		$all_page = intval($config['total_rows']/$config['per_page']);	
 		if($page > $all_page)
 			$page = $all_page;
@@ -91,12 +94,15 @@ class Show extends QT_Controller {
 		$data['getCategoryList'] = $this->Category_model->getCategoryListByPid($pid);
 		$data['title'] = $this->Category_model->getCategoryById($pid);
 		$data['category'] = $this->Category_model->getCategoryById($cid);
-		
-		$sql_string = "select * from news where cid=".$cid;
+		if(empty($data['category']['pageSize']))
+			$pageSize = 10;
+		else
+			$pageSize = $data['category']['pageSize'];
+		$sql_string = "select * from news where cid=".$cid." order by addtime desc";
 		$query = $this->db->query($sql_string);
 		$total = $query->num_rows();
 		$config['total_rows'] = $total;	
-		$config['per_page'] = 10; 
+		$config['per_page'] = $pageSize; 
 		$all_page = intval($config['total_rows']/$config['per_page']);	
 		if($page > $all_page)
 			$page = $all_page;
@@ -152,6 +158,40 @@ class Show extends QT_Controller {
 		$list["mtjj"] = $query->result_array();
 		$data['list'] = $list;
 		$this->load->view("html/show_newsIndex", $data);
+	}	
+	
+	//搜索列表页，框架文件
+	function search($page = 0,$sval="",$pid = 137){
+		$sval = $_POST['sval'];
+		$data['zjgo'] = $this->Category_model->getCategoryListByPid(129);
+		$data['culture'] = $this->Category_model->getCategoryListByPid(136);
+		$data['news'] = $this->Category_model->getCategoryListByPid($pid);
+		$data['products'] = $this->Category_model->getCategoryListByPid(134);
+		$data['major'] = $this->Category_model->getCategoryListByPid(142);
+		$data['rencai'] = $this->Category_model->getCategoryListByPid(220);
+		$data['sval'] = $sval;
+		$data['getCategoryList'] = $data['news'];
+		$data['title'] = $this->Category_model->getCategoryById($pid);
+		
+		if(!empty($sval)){
+			$sql_string = "select a.* from news a inner join category b on a.cid = b.id where b.pid = 137 and (a.title like '%".$sval."%' or a.content like '%".$sval."%')";
+			$query = $this->db->query($sql_string);
+			$total = $query->num_rows();
+			$config['total_rows'] = $total;	
+			$config['per_page'] = 100; 
+			$all_page = intval($config['total_rows']/$config['per_page']);	
+			if($page > $all_page)
+				$page = $all_page;
+			if($page < 0)
+				$page = 0;
+			$config['page'] = $page;
+			$query = $this->db->query($sql_string .' limit '. $page*$config['per_page'] .','. $config['per_page']);
+			$data['list'] =	$query->result_array();
+		}else{
+			$config['total_rows'] = 0;	
+		}
+		$data['pagecfg'] = $config;
+		$this->load->view("html/show_search", $data);
 	}	
 	
 }

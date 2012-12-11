@@ -21,21 +21,31 @@
                     <table width="75%" border="0" cellspacing="10">
                       <tr> 
                         <td height="13"> 
-                          <script type=text/javascript>
+                          <script type="text/javascript">
                      var focus_width=318
                      var focus_height=255
                      var text_height=20
                      var swf_height = focus_height+text_height
-                     
-                     var pics='http://www.nblp18.com/nbkhjc/tu/c.jpg|http://www.nblp18.com/nbkhjc/tu/c1.jpg|http://www.nblp18.com/nbkhjc/tu/c2.jpg|http://www.nblp18.com/nbkhjc/tu/c3.jpg'
-                     var links='http://www.nblp18.com/nbkhjc/tu/c.jpg|http://www.nblp18.com/nbkhjc/tu/c1.jpg|http://www.nblp18.com/nbkhjc/tu/c2.jpg|http://www.nblp18.com/nbkhjc/tu/c3.jpg'
-                     var texts='公司举行职工羽毛球比赛|公司组织全体员工观看《安全警示录像片》|科环公司党总支举行建党91周年系列活动|科环公司举办迎中秋、庆国庆文艺晚会'
+					 
+					 var pics = "";
+					 var links = "";
+					 var texts = "";
+					 <?php if(isset($list['pic_news'])){?>
+					 <?php foreach ($list['pic_news'] as $pic_news){?>
+						pics += '|<?php echo $pic_news['pic'];?>';
+						links += '|<?php echo site_url('html/show/details/'.$pic_news['id'].'/'.$pic_news['cid']);?>';
+						texts += '|<?php echo $pic_news['title'];?>';
+					 <?php }}?>
+					 pics = pics.substr(1);
+					 links = links.substr(1);
+					 texts = texts.substr(1);		
+
                      document.write('<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" width="'+ focus_width +'" height="'+ swf_height +'">');
-                     document.write('<param name="allowScriptAccess" value="sameDomain"><param name="movie" value="http://home.soufun.com/asp/root/rollnews.swf"><param name=wmode value=transparent><param name="quality" value="high">');
+                     document.write('<param name="allowScriptAccess" value="sameDomain"><param name="movie" value="images/html/focus2.swf"><param name=wmode value=transparent><param name="quality" value="high">');
                      document.write('<param name="menu" value="false"><param name=wmode value="opaque">');
                      document.write('<param name="FlashVars" value="pics='+pics+'&links='+links+'&texts='+texts+'&borderwidth='+focus_width+'&borderheight='+focus_height+'&textheight='+text_height+'">');
                      document.write('<embed src="http://mat1.qq.com/2006/flash/playswf.swf" wmode="opaque" FlashVars="pics='+pics+'&links='+links+'&texts='+texts+'&borderwidth='+focus_width+'&borderheight='+focus_height+'&textheight='+text_height+'" menu="false" bgcolor="#DADADA" quality="high" width="'+ focus_width +'" height="'+ swf_height +'" allowScriptAccess="sameDomain" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />');  document.write('</object>');
-                </script>
+			   </script>
                         </td>
                       </tr>
                     </table>
@@ -46,18 +56,24 @@
                   <table width="98%" border="0" cellspacing="0" cellpadding="0" align="center">
 					<?php if(isset($list['qyyw_td'])){?>	
                     <tr valign="top"> 
-                      <td colspan="2" height="98"><b><span class="unnamed4"> 　<font color="315699"><?php echo $list['qyyw_td']['title']?></font></span></b><span class="unnamed3"><br>
-                        　<?php echo substr_replace($list['qyyw_td']['content'],"...",435);?><font color="#FF0000">
-                        <a href="<?php echo site_url('html/show/details/'.$list['qyyw_td']['id'].'/'.$list['qyyw_td']['cid']);?>" target="_blank" style="color:black; text-decoration: none">[详细信息]<a><br>
-                        </font></span></td>
+                      
+                    <td colspan="2" height="119"><b><span class="unnamed4"> <font color="315699"> 
+                      <?php echo $list['qyyw_td']['title']?>
+                      </font></span></b><span class="unnamed3"><br><a href="<?php echo site_url('html/show/details/'.$list['qyyw_td']['id'].'/'.$list['qyyw_td']['cid']);?>" target="_blank" style="color:black; text-decoration: none">
+                      <span class="spantd">
+                      <a href="javascript:void()"><?php echo substr_replace(strip_tags($list['qyyw_td']['content']),"...",278);?></a>
+                     <a href="<?php echo site_url('html/show/details/'.$list['qyyw_td']['id'].'/'.$list['qyyw_td']['cid']);?>" target="_blank" style="color:black; text-decoration: none"><font color="#FF0000">[详细信息]</font><a>
+                    
+                      <br>
+                        </span></td>
                     </tr>
 					<?php }?>			
 					  <?php foreach ($list['qyyw'] as $qyyw){?>	
 					  <tr> 
-						<td class="unnamed2" height="30"><img src="images/html/6.jpg" width="3" height="6">
-							<a href="<?php echo site_url('html/show/details/'.$qyyw['id'].'/'.$qyyw['cid']);?>" target="_blank" style="color:black; text-decoration: none"><?php echo $qyyw['title']?></a>
+						<td class="tdd" height="30"><img src="images/html/6.jpg" width="3" height="6">
+							<a href="<?php echo site_url('html/show/details/'.$qyyw['id'].'/'.$qyyw['cid']);?>" target="_blank"><?php echo substr_replace(strip_tags($qyyw['title']),"...",60);?></a>
 						</td>
-						<td class="unnamed3" height="30" width="19%" nowrap>[<?php echo $qyyw['addtime']?>]</td>
+						<td class="unnamed3" height="30" width="19%" nowrap>[<?php echo date('Y-m-d',strtotime($qyyw['addtime']))?>]</td>
 					  </tr>
 					  <tr> 
 						<td class="unnamed2" colspan="2"><img src="images/html/5.jpg" width="364" height="3"></td>
@@ -77,7 +93,8 @@
           <td bgcolor="#FFFFFF" valign="top" height="158">
             <table width="75%" border="0" cellspacing="0" cellpadding="0" height="205">
               <tr> 
-                <td><img src="images/html/28.jpg" width="230" height="31"></td>
+                
+              <td><img src="images/html/28.jpg" width="230" height="31" usemap="#Map" border="0"></td>
               </tr>
               <tr>
                 <td> 
@@ -87,8 +104,8 @@
                         <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" height="98">
 						  <?php foreach ($list['qygg'] as $qygg){?>	
                           <tr> 
-                            <td class="unnamed2" height="25"><img src="images/html/6.jpg" width="3" height="6">
-								<a href="<?php echo site_url('html/show/details/'.$qygg['id'].'/'.$qygg['cid']);?>" target="_blank" style="color:black; text-decoration: none"><?php echo $qygg['title']?></a>
+                            <td class="tdd" height="25"><img src="images/html/6.jpg" width="3" height="6">
+								<a href="<?php echo site_url('html/show/details/'.$qygg['id'].'/'.$qygg['cid']);?>" target="_blank"><?php echo substr_replace($qygg['title'],"...",36);?></a>
                             </td>
                           </tr>
                           <tr> 
@@ -125,12 +142,13 @@
   </TR>
   <TR bgcolor="#FFFFFF"> 
     <TD colspan="4" height="98" valign="top">
-      <table width="93%" border="0" cellspacing="0" cellpadding="0">
-        <tr> 
+      
+    <table width="89%" border="0" cellspacing="0" cellpadding="0" align="center">
+      <tr> 
           <td width="6%" height="86"><img src="images/html/11.jpg" width="33" height="169"></td>
           <td width="94%" height="86" valign="middle"> 
             <div align="center"> 
-              <div id=demo style=overflow:hidden;width:959;> 
+              <div id=demo style=overflow:hidden;width:943;> 
                 <div align="center"> 
                   <table border="0" cellpadding="0" cellspacing="0" align="center">
                     <tr> 
@@ -138,9 +156,9 @@
                         <table border="0" valign="center" cellpadding="0" cellspacing="0">
                           <tr> 
 						  <?php foreach ($list['zdgczs'] as $zdgczs){?>
-                            <td class="unnamed2" style="text-align:center;padding-right:2px;">							
-								<img src="<?php echo $zdgczs['pic']?>" width="130" height="120"><br>
-								<?php echo $zdgczs['title']?>
+                            <td class="tdd" style="text-align:center;padding-right:2px;">							
+								<a href="<?php echo site_url()?>/html/show/lists/217/142"><img src="<?php echo $zdgczs['pic']?>" width="130" height="120" style="border:0px;"></a><br>
+								<a href="<?php echo site_url()?>/html/show/lists/217/142"><?php echo $zdgczs['title']?></a>
                             </td>
 							<?php }?>
                           </tr>
@@ -196,8 +214,8 @@ demo.onmouseout=function() {MyMar=setInterval(Marquee,speed)}
                   <table width="96%" border="0" cellspacing="0" cellpadding="0" align="center" height="98">
 				  <?php foreach ($list['ldgh'] as $ldgh){?>	
 				  <tr> 
-					<td class="unnamed2" height="25"><img src="images/html/6.jpg" width="3" height="6">
-						<a href="<?php echo site_url('html/show/details/'.$ldgh['id'].'/'.$ldgh['cid']);?>" target="_blank" style="color:black; text-decoration: none"><?php echo $ldgh['title']?></a>
+					<td class="tdd" height="25"><img src="images/html/6.jpg" width="3" height="6">
+						<a href="<?php echo site_url('html/show/details/'.$ldgh['id'].'/'.$ldgh['cid']);?>" target="_blank" ><?php echo substr_replace($ldgh['title'],"...",42);?></a>
 					</td>
 				  </tr>
 				  <tr> 
@@ -208,7 +226,16 @@ demo.onmouseout=function() {MyMar=setInterval(Marquee,speed)}
                 </td>
               </tr>
             </table>
-          </td>
+          <div align="left"> 
+            <table width="95%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td>
+                  <div align="right"><a href="index.php/html/show/listNew/206/129"><img src="images/html/more1.jpg" border="0"></a></div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </td>
         </tr>
       </table>
     </TD>
@@ -225,8 +252,8 @@ demo.onmouseout=function() {MyMar=setInterval(Marquee,speed)}
                   <table width="96%" border="0" cellspacing="0" cellpadding="0" align="center" height="98">
 				  <?php foreach ($list['gsdt'] as $gsdt){?>	
 				  <tr> 
-					<td class="unnamed2" height="25"><img src="images/html/6.jpg" width="3" height="6">
-						<a href="<?php echo site_url('html/show/details/'.$gsdt['id'].'/'.$gsdt['cid']);?>" target="_blank" style="color:black; text-decoration: none"><?php echo $gsdt['title']?></a>
+					<td class="tdd" height="25"><img src="images/html/6.jpg" width="3" height="6">
+						<a href="<?php echo site_url('html/show/details/'.$gsdt['id'].'/'.$gsdt['cid']);?>" target="_blank"><?php echo substr_replace($gsdt['title'],"...",42);?></a>
 					</td>
 				  </tr>
 				  <tr> 
@@ -237,26 +264,31 @@ demo.onmouseout=function() {MyMar=setInterval(Marquee,speed)}
                 </td>
               </tr>
             </table>
-          </td>
+          <div align="right">
+            <table width="95%" border="0" cellspacing="0" cellpadding="0" align="left">
+              <tr> 
+                <td> 
+                  <div align="right"><a href="index.php/html/show/listNew/209/137"><img src="images/html/more1.jpg" border="0"></a></div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </td>
         </tr>
       </table>
     </TD>
     <TD height="183" valign="top">
       <table width="98%" border="0" cellspacing="0" cellpadding="0" height="188" align="center" bgcolor="#CCCCCC">
         <tr> 
-          <td bgcolor="#FFFFFF" valign="top" height="183" background="images/html/14z.jpg"> 
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <table width="89%" border="0" cellspacing="0" cellpadding="0" align="center">
+          
+        <td bgcolor="#FFFFFF" valign="bottom" height="205" background="images/html/14z.jpg"> 
+          <table width="89%" border="0" cellspacing="0" cellpadding="0" align="center">
 				<?php foreach ($list['zp'] as $zp){?>	
               <tr> 
-                <td class="unnamed2" height="25"><img src="images/html/6.jpg" width="3" height="6"> 
-                  <?php echo $zp['title']?></td>
+                
+              <td class="tdd" height="25"><img src="images/html/6.jpg" width="3" height="6"> 
+                <a href="<?php echo site_url('html/show/listNew/222/220');?>" target="_blank"><?php echo $zp['title']?></a>
+              </td>
               </tr>
               <tr> 
                 <td class="unnamed2"><img src="images/html/5a.jpg" width="210" height="3"></td>
@@ -270,6 +302,8 @@ demo.onmouseout=function() {MyMar=setInterval(Marquee,speed)}
   </TR>
   <TR bgcolor="#FFFFFF"> 
     <TD colspan="4" height="19" valign="top">&nbsp; </TD>
-  </TR>
-</TABLE>
+  </TR></TABLE>
 <?php include "foot.php"?>
+<map name="Map">
+  <area shape="rect" coords="183,1,230,28" href="index.php/html/show/listNew/210/137">
+</map>

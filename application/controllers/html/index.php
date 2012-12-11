@@ -32,14 +32,16 @@ class Index extends QT_Controller {
 		$list["gsdt"] = $query->result_array();		
 		$query = $this->db->query("select * from news where cid = 206 order by id desc limit 5");
 		$list["ldgh"] = $query->result_array();			
-		$query = $this->db->query("select * from news where cid = 230 order by id desc limit 5");
+		$query = $this->db->query("select * from news where cid = 208 order by id desc limit 5");
 		$list["qyyw"] = $query->result_array();		
-		$query = $this->db->query("select * from news where cid = 230 and db0 = '是'");
+		$query = $this->db->query("select * from news where cid = 208 and db0 = '是'");
 		$list["qyyw_td"] = $query->row_array();				
 		$query = $this->db->query("select * from news where cid = 217 order by id desc");
 		$list["zdgczs"] = $query->result_array();
 		$query = $this->db->query("select * from news where cid = 222 order by id desc limit 3");
 		$list["zp"] = $query->result_array();				
+		$query = $this->db->query("select * from news where cid = 244 order by id desc");
+		$list["pic_news"] = $query->result_array();		
 		$data['list'] = $list;
 		
 		$this->load->view('html/index',$data);		

@@ -50,7 +50,7 @@ class News extends HT_Controller
 		$this->load->library('pagination');
 		$config['base_url'] = site_url('admin/news/index/'.$cid);
 		$config['total_rows'] = $total;		
-		$config['per_page'] = '10'; 
+		$config['per_page'] = '20'; 
 		$config['uri_segment'] = 5;
 		$this->pagination->initialize($config);
 		$data['pagination'] = $this->pagination->create_links();
@@ -154,6 +154,29 @@ class News extends HT_Controller
 			}
 		}
 		
+		if(!empty($_FILES['oripic']['name'])){
+			$attachment_dir = "uploads/".date('Ym')."/";
+			!is_dir($attachment_dir) && mkdir($attachment_dir,0777, true);	
+			$config['upload_path'] = $attachment_dir;
+			$config['allowed_types'] = 'gif|jpg|png';
+			$config['max_size'] = '500';
+			$config['max_width']  = '1000';
+			$config['max_height']  = '1000';	
+			$config['encrypt_name'] = TRUE;			
+			$this->load->library('upload', $config);
+			
+			if ( ! $this->upload->do_upload('oripic'))	{
+				$error = $this->upload->display_errors();
+				show_error($error);
+			} else{
+				$file = $this->upload->data();	
+				$data['oripic'] = $attachment_dir.$file['file_name'] ;  //上传图片，返回图片地址	 		 
+			}
+		}		
+
+
+
+		
 		if($id > 0){			
 			$this->db->where('id', $id);
 			$this->db->update('news', $data); 
@@ -164,6 +187,22 @@ class News extends HT_Controller
 		redirect($_POST['gourl']);
 		
 	}	
+	
+    public function upload(){
+		if (isset($_FILES["Filedata"]) || !is_uploaded_file($_FILES["Filedata"]["tmp_name"]) || $_FILES["Filedata"]["error"] != 0) {
+			$upload_file = $_FILES['Filedata'];
+			$file_info   = pathinfo($upload_file['name']);
+			$file_type   = $file_info['extension'];
+			$attachment_dir = "uploads/".date('Ym')."/video/";
+			!is_dir($attachment_dir) && mkdir($attachment_dir,0777, true);				
+			$save        = md5(uniqid($_FILES["Filedata"]['name'])) . '.' . $file_info['extension'];
+			$name        = $_FILES['Filedata']['tmp_name'];
+			
+			if (move_uploaded_file($name, $attachment_dir.$save)) {
+				echo $attachment_dir.$save;
+			}
+		}
+	}		
 	
 	
 	// 删除数据 

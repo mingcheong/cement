@@ -10,6 +10,7 @@
 <script type="text/javascript" src="<?php echo base_url();?>js/jquery-1.3.2.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>js/swfobject.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>js/jquery.uploadify.v2.1.0.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url()?>FCKeditor/fckeditor.js" language="javascript"></script> 
 <script type="text/javascript">
 function doAction(a,id){
 	ids = 0;
@@ -60,6 +61,15 @@ $(document).ready(function() {
 
 		
 	});
+	var fck = new FCKeditor('content');
+
+fck.Width = "100%";
+
+fck.Height = 450;
+
+fck.BasePath = "<?php echo base_url();?>/FCKeditor/";
+
+fck.ReplaceTextarea() ;	
 });
 </script>
 </head>
@@ -187,6 +197,31 @@ if(empty($article['id'])){
       </tr>
     </table></td>
   </tr>
+  <tr style="display:<?php if(!in_array('oripic', $display)) echo "none";?>">
+    <td  align="right" >原始图：</td>
+    <td align="left" ><table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="200" align="left">
+        <input type="file" name="oripic" id="oripic" onchange=" document.getElementById('oripicid2').src=this.value"></td>
+        <td>
+          <?php if(!empty($article ['oripic'])){  ?>
+          	<img src="<?php echo base_url().$article['oripic']?>" name="oripicid"  id="oripicid" width="100" height="80" >             
+          <?php }else{?>
+          <img src="images/admin/nopic.jpg" name="oripicid2"  id="oripicid2" width="100" height="80" >
+          <?php }?>
+        </td>
+      </tr>
+    </table></td>
+  </tr>  
+  <tr style="display:<?php if(!in_array('video', $display)) echo "none";?>">
+    <td  align="right" >视频：</td>
+    <td align="left" ><table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="200" align="left">
+        <input type="file" name="video" id="video"></td>
+      </tr>
+    </table></td>
+  </tr>   
   <tr style="display:<?php if(!in_array('source', $display)) echo "none";?>">
     <td  align="right" >来源：</td>
     <td align="left" ><input name="source" type="text" class="form" style="width: 400px;" value="<?php echo @$article ['source'];?>"></td>
@@ -202,34 +237,7 @@ if(empty($article['id'])){
   <tr style="display:<?php if(!in_array('content', $display)) echo "none";?>">
     <td  align="right" ><span class="red">* </span>内容：</td>
     <td align="left"  >
-<style>
-			form {
-				margin: 0;
-			}
-			textarea {
-				display: block;
-			}
-		</style>
-		<script charset="utf-8" src="edit/kindeditor.js"></script>
-		<script>
-			KE.show({
-				id : 'content',
-				cssPath : './index.css',
-				afterCreate : function(id) {
-					KE.event.ctrl(document, 13, function() {
-						KE.sync(id);
-						document.forms['example'].submit();
-					});
-					KE.event.ctrl(KE.g[id].iframeDoc, 13, function() {
-						KE.sync(id);
-						document.forms['example'].submit();
-					});
-				}
-			});
-		</script>
-<textarea id="content" name="content" style=" width:950px;height:450px;visibility:hidden;"><?php echo @$article['content'];?></textarea>
-
-
+<textarea id="content" name="content" ><?php echo @$article['content'];?></textarea>
     </td>
     </tr>
   <tr>

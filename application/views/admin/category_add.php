@@ -89,7 +89,11 @@ function setTplVal(val){
 				<option value="0" <?php if(@$article['isdis'] == 0) echo "selected='selected'"?>>否</option>
 			</select>
 		</td>
-	</tr>		
+	</tr>	
+	<tr>
+		<td align="right" >每页显示几条：</td>
+	  <td height="26" align="left" ><input name="pageSize" type="text" id="pageSize" style="width: 50px" value="<?php echo @$article['pageSize'];?>"></td>
+	</tr>	
 	<tr >
 	  <td align="right" valign="top"  style="padding-top:6px">栏目介绍：</td>
 	  <td height="26" align="left" >

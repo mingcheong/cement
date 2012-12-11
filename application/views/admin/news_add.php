@@ -10,6 +10,7 @@
 <script type="text/javascript" src="<?php echo base_url();?>js/jquery-1.3.2.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>js/swfobject.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>js/jquery.uploadify.v2.1.0.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url()?>FCKeditor/fckeditor.js" language="javascript"></script> 
 <script type="text/javascript">
 function doAction(a,id){
 	ids = 0;
@@ -64,6 +65,15 @@ $(document).ready(function() {
 
 		
 	});
+	var fck = new FCKeditor('content');
+
+fck.Width = "100%";
+
+fck.Height = 450;
+
+fck.BasePath = "<?php echo base_url();?>/FCKeditor/";
+
+fck.ReplaceTextarea() ;
 });
 </script>
 </head>
@@ -189,6 +199,240 @@ if($actName=='添加内容'){
       </tr>
     </table></td>
   </tr>
+  <tr style="display:<?php if(!in_array('oripic', $display)) echo "none";?>">
+    <td  align="right" >原始图：</td>
+    <td align="left" ><table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="200" align="left">
+        <input type="file" name="oripic" id="oripic" onchange=" document.getElementById('oripicid2').src=this.value"></td>
+        <td>
+          <?php if(!empty($article ['oripic'])){  ?>
+          	<img src="<?php echo base_url().$article['oripic']?>" name="oripicid"  id="oripicid" width="100" height="80" >             
+          <?php }else{?>
+          <img src="images/admin/nopic.jpg" name="oripicid2"  id="oripicid2" width="100" height="80" >
+          <?php }?>
+        </td>
+      </tr>
+    </table></td>
+  </tr>  
+  <tr style="display:<?php if(!in_array('video', $display)) echo "none";?>">
+    <td  align="right" >视频：</td>
+    <td align="left" ><table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="200" align="left">
+			<?php if(in_array('video', $display)) {?>
+				<script type="text/javascript" src="<?php echo base_url();?>js/swfupload/swfupload.js"></script>
+				<script type="text/javascript" src="<?php echo base_url();?>js/swfupload.swfobject.js"></script>
+				<script type="text/javascript" src="<?php echo base_url();?>js/swfupload.queue.js"></script>
+				<script type="text/javascript" src="<?php echo base_url();?>js/fileprogress.js"></script>
+				<script type="text/javascript" src="<?php echo base_url();?>js/handlers.js"></script>	
+				<style>
+				<!--
+				div.fieldset {
+					border:  1px solid #afe14c;
+					margin: 10px 0;
+					padding: 20px 10px;
+				}
+				div.fieldset span.legend {
+					position: relative;
+					background-color: #FFF;
+					padding: 3px;
+					top: -30px;
+					font: 700 14px Arial, Helvetica, sans-serif;
+					color: #73b304;
+				}
+
+				div.flash {
+					width: 375px;
+					margin: 10px 5px;
+					border-color: #D9E4FF;
+
+					-moz-border-radius-topleft : 5px;
+					-webkit-border-top-left-radius : 5px;
+					-moz-border-radius-topright : 5px;
+					-webkit-border-top-right-radius : 5px;
+					-moz-border-radius-bottomleft : 5px;
+					-webkit-border-bottom-left-radius : 5px;
+					-moz-border-radius-bottomright : 5px;
+					-webkit-border-bottom-right-radius : 5px;
+
+				} 	
+				.progressWrapper {
+					width: 357px;
+					overflow: hidden;
+				}
+
+				.progressContainer {
+					margin: 5px;
+					padding: 4px;
+					border: solid 1px #E8E8E8;
+					background-color: #F7F7F7;
+					overflow: hidden;
+				}
+				/* Message */
+				.message {
+					margin: 1em 0;
+					padding: 10px 20px;
+					border: solid 1px #FFDD99;
+					background-color: #FFFFCC;
+					overflow: hidden;
+				}
+
+
+				/* Current */
+				.green {
+					border: solid 1px #DDF0DD;
+					background-color: #EBFFEB;
+				}
+
+				/* Complete */
+				.blue {
+					border: solid 1px #CEE2F2;
+					background-color: #F0F5FF;
+				}
+
+				.progressName {
+					font-size: 10pt;
+					font-weight: 700;
+					color: #555;
+					width: 323px;
+					height: 14px;
+					text-align: left;
+					white-space: nowrap;
+					overflow: hidden;
+				}
+
+				.progressBarInProgress,
+				.progressBarComplete,
+				.progressBarError {
+					font-size: 10pt;
+					width: 0%;
+					height: 2px;
+					background-color: blue;
+					margin-top: 2px;
+				}
+
+				.progressBarComplete {
+					width: 100%;
+					background-color: green;
+					visibility: hidden;
+				}
+
+				.progressBarError {
+					width: 100%;
+					background-color: red;
+					visibility: hidden;
+				}
+
+				.progressBarStatus {
+					margin-top: 2px;
+					width: 337px;
+					font-size: 10pt;
+					font-family: Arial;
+					text-align: left;
+					white-space: nowrap;
+				}
+
+				a.progressCancel {
+					font-size: 10pt;
+					display: block;
+					height: 14px;
+					width: 14px;
+					background-image: url(../images/cancelbutton.gif);
+					background-repeat: no-repeat;
+					background-position: -14px 0px;
+					float: right;
+				}
+
+				a.progressCancel:hover {
+					background-position: 0px 0px;
+				}
+
+
+				/* -- SWFUpload Object Styles ------------------------------- */
+				.swfupload {
+					vertical-align: top;
+				}				
+				-->
+				</style>
+				<script type="text/javascript">
+				var swfu;
+
+				window.onload = function () {
+					var settings = {
+						flash_url : "<?php echo base_url();?>js/swfupload/swfupload.swf",
+						upload_url: "<?php echo site_url();?>/admin/news/upload",
+						post_params: {"PHPSESSID" : ""},
+						file_size_limit : "2 MB",//设定上传大小
+						file_types : "*.flv;*.wmv",//类型限制
+						file_types_description : "All Files",//打开选择窗口的类型说明文字
+						file_upload_limit : 1,// 实例控制上传成功的文件总数
+						file_queue_limit : 1,// 设置文件上传队列中等待文件的最大数量限制
+						debug:false,//是否显示调试窗口
+						custom_settings : {//自定义变量
+							   progressTarget : "fsUploadProgress",//进度条展示的容器id
+							   cancelButtonId : "btnCancel"//取消按钮
+						},
+						button_image_url : "<?php echo base_url();?>js/swfupload/XPButtonUploadText_61x22.png",
+						button_placeholder_id : "spanButtonPlaceholder",
+						button_width: 61,
+						button_height: 22,
+						
+						swfupload_loaded_handler : swfUploadLoaded,
+						file_queued_handler : fileQueued,
+						file_queue_error_handler : fileQueueError,
+						file_dialog_complete_handler : fileDialogComplete,
+						upload_start_handler : uploadStart,
+						upload_progress_handler : uploadProgress,
+						upload_error_handler : uploadError,
+						upload_success_handler : function(file, serverData){
+							try {
+								var progress = new FileProgress(file, this.customSettings.progressTarget);
+								progress.setComplete();
+								progress.setStatus("上传成功");
+								progress.toggleCancel(false);
+								document.getElementById('video').value = '<?php echo base_url();?>' + serverData;
+							} catch (ex) {
+								this.debug(ex);
+							}						
+						},
+						upload_complete_handler : uploadComplete,
+						queue_complete_handler : queueComplete,	// Queue plugin event
+					};
+					swfu = new SWFUpload(settings);
+				}
+				</script>	
+					<div class="fieldset  flash" id="fsUploadProgress">
+					<span class="legend">上传视频(限制2MB)</span>
+					</div>
+					<div id="divStatus">已上传 0 个文件</div>
+					<div>
+						<span id="spanButtonPlaceholder"></span>
+						<input id="btnCancel" type="button" value="取消上传" disabled="disabled" style="margin-left: 2px; height: 22px; font-size: 10pt;" />
+					</div>	
+				<noscript>
+					<div style="background-color: #FFFF66; border-top: solid 4px #FF9966; border-bottom: solid 4px #FF9966; margin: 10px 25px; padding: 10px 15px;">
+						We're sorry.  SWFUpload could not load.  You must have JavaScript enabled to enjoy SWFUpload.
+					</div>
+				</noscript>
+				<div id="divLoadingContent" class="content" style="background-color: #FFFF66; border-top: solid 4px #FF9966; border-bottom: solid 4px #FF9966; margin: 10px 25px; padding: 10px 15px; display: none;">
+					SWFUpload is loading. Please wait a moment...
+				</div>
+				<div id="divLongLoading" class="content" style="background-color: #FFFF66; border-top: solid 4px #FF9966; border-bottom: solid 4px #FF9966; margin: 10px 25px; padding: 10px 15px; display: none;">
+					SWFUpload is taking a long time to load or the load has failed.  Please make sure that the Flash Plugin is enabled and that a working version of the Adobe Flash Player is installed.
+				</div>
+				<div id="divAlternateContent" class="content" style="background-color: #FFFF66; border-top: solid 4px #FF9966; border-bottom: solid 4px #FF9966; margin: 10px 25px; padding: 10px 15px; display: none;">
+					We're sorry.  SWFUpload could not load.  You may need to install or upgrade Flash Player.
+					Visit the <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash">Adobe website</a> to get the Flash Player.
+				</div>	
+			<input type="text" name="video" id="video" value="<?php echo @$article['video']?>" style="width: 600px;">
+			<br>				
+			<?php } ?>			
+		</td>
+      </tr>
+    </table>
+	</td>
+  </tr>    
   <tr style="display:<?php if(!in_array('source', $display)) echo "none";?>">
     <td  align="right" >来源：</td>
     <td align="left" ><input name="source" type="text" class="form" style="width: 400px;" value="<?php echo @$article ['source'];?>"></td>
@@ -203,35 +447,8 @@ if($actName=='添加内容'){
     </tr>
   <tr style="display:<?php if(!in_array('content', $display)) echo "none";?>">
     <td  align="right" ><span class="red">* </span>内容：</td>
-    <td align="left"  >
-<style>
-			form {
-				margin: 0;
-			}
-			textarea {
-				display: block;
-			}
-		</style>
-		<script charset="utf-8" src="edit/kindeditor.js"></script>
-		<script>
-			KE.show({
-				id : 'content',
-				cssPath : './index.css',
-				afterCreate : function(id) {
-					KE.event.ctrl(document, 13, function() {
-						KE.sync(id);
-						document.forms['example'].submit();
-					});
-					KE.event.ctrl(KE.g[id].iframeDoc, 13, function() {
-						KE.sync(id);
-						document.forms['example'].submit();
-					});
-				}
-			});
-		</script>
-<textarea id="content" name="content" style=" width:950px;height:450px;visibility:hidden;"><?php echo @$article['content'];?></textarea>
-
-
+    <td align="left">
+		<textarea id="content" name="content" ><?php echo @$article['content'];?></textarea>
     </td>
     </tr>
   <tr>

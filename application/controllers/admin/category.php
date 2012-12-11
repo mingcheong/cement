@@ -41,7 +41,8 @@ class Category extends HT_Controller
 			   'tpl_show' => $this->input->post('tpl_show'),
 			   'type' => $type,
 			   'logo' => $this->input->post('logo'),
-			   'isdis' => $this->input->post('isdis')
+			   'isdis' => $this->input->post('isdis'),
+			   'pageSize' => $this->input->post('pageSize')
         	);
 		if(!empty($_POST['id'])){
 			$this->db->where('id', $_POST['id']);			

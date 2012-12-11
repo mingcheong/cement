@@ -1,10 +1,10 @@
 ﻿<?php include "head.php"?>
   <TR> 
     <TD valign="top" height="148"><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=5,0,0,0" width="1000" height="250">
-        <param name=movie value="images/html/go.swf">
+        <param name=movie value="images/html/go2.swf">
         <param name=quality value=high>
         <param name="wmode" value="transparent">
-        <embed src="images/html/go.swf" quality=high pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="1000" height="250" wmode="transparent">
+        <embed src="images/html/go2.swf" quality=high pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="1000" height="250" wmode="transparent">
         </embed> 
       </object></TD>
   </TR>
@@ -12,13 +12,18 @@
     <TD height="613" valign="top">
       <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr> 
-          <td width="24%" height="623" valign="top"> 
-            <div align="center"><br>
+          <td width="24%" height="623" valign="top" style="padding-top:19px;">
+            <div align="center">
               <table width="85%" border="0" cellspacing="0" cellpadding="0">
                 <tr> 
                   <td><img src="images/html/59.jpg" width="214" height="34"></td>
                 </tr>
 				<?php include "menu.php"?>
+              </table>
+			  	<table  height="100%" border="0" bgcolor="CAEDFE" cellspacing="0" cellpadding="0">
+                <tr> 
+                  <td width="214">&nbsp;</td>
+                </tr>
               </table>
             </div>
           </td>
@@ -58,9 +63,9 @@
                           <table width="100%" border="0" cellspacing="0" cellpadding="0">
 							<?php foreach ($list['qygg'] as $qygg){?>						  
                             <tr> 
-                              <td class="unnamed7" height="32" valign="bottom"><img src="images/html/W020110725469023291409.gif" width="9" height="9"> 
-                                <a href="<?php echo site_url('html/show/details/'.$qygg['id'].'/'.$qygg['cid']);?>" target="_blank" style="color:black; text-decoration: none"><?php echo $qygg['title']?></a></td>
-                              <td class="unnamed3" width="30%" height="32" style="text-align:right">[<?php echo $qygg['addtime']?>]</td>
+                              <td class="tdd" height="32" valign="bottom"><img src="images/html/W020110725469023291409.gif" width="9" height="9"> 
+                                <a href="<?php echo site_url('html/show/details/'.$qygg['id'].'/'.$qygg['cid']);?>" target="_blank"><?php echo substr_replace($qygg['title'],"...",75)?></a></td>
+                              <td class="unnamed3" width="30%" height="32" style="text-align:right">[<?php echo date('Y-m-d',strtotime($qygg['addtime']))?>]</td>
                             </tr>
                             <tr> 
                               <td colspan="2" class="unnamed7"><img src="images/html/61.jpg" width="537" height="6"></td>
@@ -99,9 +104,9 @@
                           <table width="100%" border="0" cellspacing="0" cellpadding="0">
 							<?php foreach ($list['gsdt'] as $gsdt){?>	
                             <tr> 
-                              <td class="unnamed7" height="32" valign="bottom"><img src="images/html/W020110725469023291409.gif" width="9" height="9"> 
-                                <a href="<?php echo site_url('html/show/details/'.$gsdt['id'].'/'.$gsdt['cid']);?>" target="_blank" style="color:black; text-decoration: none"><?php echo $gsdt['title']?></a></td>
-                              <td class="unnamed3" width="30%" height="32" style="text-align:right">[<?php echo $gsdt['addtime']?>]</td>
+                              <td class="tdd" height="32" valign="bottom"><img src="images/html/W020110725469023291409.gif" width="9" height="9"> 
+                                <a href="<?php echo site_url('html/show/details/'.$gsdt['id'].'/'.$gsdt['cid']);?>" target="_blank"><?php echo substr_replace($gsdt['title'],"...",75)?></a></td>
+                              <td class="unnamed3" width="30%" height="32" style="text-align:right">[<?php echo date('Y-m-d',strtotime($gsdt['addtime']))?>]</td>
                             </tr>
                             <tr> 
                               <td colspan="2" class="unnamed7"><img src="images/html/61.jpg" width="537" height="6"></td>
@@ -140,9 +145,9 @@
                           <table width="100%" border="0" cellspacing="0" cellpadding="0">
 							<?php foreach ($list['hyzx'] as $hyzx){?>	
                             <tr> 
-                              <td class="unnamed7" height="32" valign="bottom"><img src="images/html/W020110725469023291409.gif" width="9" height="9"> 
-                                <a href="<?php echo site_url('html/show/details/'.$hyzx['id'].'/'.$hyzx['cid']);?>" target="_blank" style="color:black; text-decoration: none"><?php echo $hyzx['title']?></a></td>
-                              <td class="unnamed3" width="30%" height="32" style="text-align:right">[<?php echo $hyzx['addtime']?>]</td>
+                              <td class="tdd" height="32" valign="bottom"><img src="images/html/W020110725469023291409.gif" width="9" height="9"> 
+                                <a href="<?php echo site_url('html/show/details/'.$hyzx['id'].'/'.$hyzx['cid']);?>" target="_blank"><?php echo substr_replace($hyzx['title'],"...",75)?></a></td>
+                              <td class="unnamed3" width="30%" height="32" style="text-align:right">[<?php echo date('Y-m-d',strtotime($hyzx['addtime']))?>]</td>
                             </tr>
                             <tr> 
                               <td colspan="2" class="unnamed7"><img src="images/html/61.jpg" width="537" height="6"></td>
@@ -181,9 +186,9 @@
                           <table width="100%" border="0" cellspacing="0" cellpadding="0">
  							<?php foreach ($list['mtjj'] as $mtjj){?>	
                             <tr> 
-                              <td class="unnamed7" height="32" valign="bottom"><img src="images/html/W020110725469023291409.gif" width="9" height="9"> 
-                                <a href="<?php echo site_url('html/show/details/'.$mtjj['id'].'/'.$mtjj['cid']);?>" target="_blank" style="color:black; text-decoration: none"><?php echo $mtjj['title']?></a></td>
-                              <td class="unnamed3" width="30%" height="32" style="text-align:right">[<?php echo $mtjj['addtime']?>]</td>
+                              <td class="tdd" height="32" valign="bottom"><img src="images/html/W020110725469023291409.gif" width="9" height="9"> 
+                                <a href="<?php echo site_url('html/show/details/'.$mtjj['id'].'/'.$mtjj['cid']);?>" target="_blank"><?php echo substr_replace($mtjj['title'],"...",75)?></a></td>
+                              <td class="unnamed3" width="30%" height="32" style="text-align:right">[<?php echo date('Y-m-d',strtotime($mtjj['addtime']))?>]</td>
                             </tr>
                             <tr> 
                               <td colspan="2" class="unnamed7"><img src="images/html/61.jpg" width="537" height="6"></td>

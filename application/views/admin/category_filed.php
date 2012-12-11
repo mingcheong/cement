@@ -52,6 +52,18 @@ body {
     <td><input name="display[]" type="checkbox" id="display[]" value="pic" <?php if(in_array('pic', $display)) echo "checked";?>  />
 启用</td>
   </tr>
+  <tr>
+    <td align="left">oripic</td>
+    <td align="left">原始图</td>
+    <td><input name="display[]" type="checkbox" id="display[]" value="oripic" <?php if(in_array('oripic', $display)) echo "checked";?>  />
+启用</td>
+  </tr>  
+  <tr>
+    <td align="left">video</td>
+    <td align="left">视频</td>
+    <td><input name="display[]" type="checkbox" id="display[]" value="video" <?php if(in_array('video', $display)) echo "checked";?>  />
+启用</td>
+  </tr>   
    <tr>
     <td align="left">photos</td>
     <td align="left">图组</td>

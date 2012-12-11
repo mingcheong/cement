@@ -1,10 +1,11 @@
 <?php include "head.php"?>
   <TR> 
-    <TD valign="top" height="148"><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=5,0,0,0" width="1000" height="250">
-        <param name=movie value="images/html/go.swf">
+    
+  <TD valign="top" height="148"><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=5,0,0,0" width="1000" height="250">
+      <param name=movie value="images/html/go4.swf">
         <param name=quality value=high>
         <param name="wmode" value="transparent">
-        <embed src="images/html/go.swf" quality=high pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="1000" height="250" wmode="transparent">
+        <embed src="images/html/go4.swf" quality=high pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="1000" height="250" wmode="transparent">
         </embed> 
       </object></TD>
   </TR>
@@ -38,6 +39,7 @@
                   <td height="73" width="36" valign="top" background="images/html/79.jpg">&nbsp;</td>
                   <td width="701" height="73" valign="top"> 
 					<form action="<?php echo site_url();?>/admin/resume/add" id="frm" method="post" onSubmit="return checkFrom();" target="ifrm">
+						<input type="hidden" name="newid" value="<?php echo @$article['id']?>"/>
                     <table class=margin2010 cellspacing=0 bordercolordark=#ffffff cellpadding=0 width="95%" align=center bordercolorlight=#e4e4e4 border=2>
                       <tbody> 
                       <tr> 

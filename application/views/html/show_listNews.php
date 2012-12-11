@@ -22,15 +22,22 @@
               </table>
             </div>
           </td>
-          <td width="76%" height="623" valign="top"> 
-            <table width="97%" border="0" cellspacing="0" cellpadding="0" height="15" align="center">
+          
+        <td width="76%" height="623" valign="top"> <br>
+          <table width="97%" border="0" cellspacing="0" cellpadding="0" height="15" align="center">
               <tr> 
-                <td class="unnamed3" height="31" valign="bottom"> 　 <img src="images/html/arrowbule.jpg" width="11" height="9"> 
-                  当前位置：　首页 &gt; <?php echo $title['name']?> &gt; <?php echo $category['name']?></td>
+                
+              <td class="unnamed3" height="31" valign="middle" background="images/html/2.jpg"> 
+                <img src="images/html/arrowbule.jpg" width="11" height="9"> 当前位置：首页 &gt; 
+                <?php echo $title['name']?>&gt; 
+                <?php echo $category['name']?>
+              </td>
               </tr>
             </table>
 			
-			<table width="94%" border="0" cellspacing="0" cellpadding="0" align="center" height="15">
+			
+          <br>
+          <table width="94%" border="0" cellspacing="0" cellpadding="0" align="center" height="15">
 			  <?php if (!empty($category['logo'])){?>
               <tr> 
                 <td colspan="2" height="44"><img src="images/html/<?php echo $category['logo']?>"height="34"></td>
@@ -43,8 +50,8 @@
 					<?php foreach ($list as $art){?>
 						<tr> 
 						  <td class="unnamed7" width="84%" height="27" valign="middle"><img src="images/html/W020110725469023291409.gif" width="9" height="9"> 
-							<a href="<?php echo site_url('html/show/details/'.$art['id'].'/'.$art['cid']);?>" target="_blank" style="color:black; text-decoration: none"><?php echo $art['title']?></a> <img src="images/html/ico_camera.jpg" width="15" height="11"></td>
-						  <td class="unnamed3" width="16%" height="16">[<?php echo $art['addtime']?>]</td>
+							<a href="<?php echo site_url('html/show/details/'.$art['id'].'/'.$art['cid']);?>" target="_blank" style="color:black; text-decoration: none"><span class="unnamed7" ><?php echo $art['title']?></span></a> <?php if (isset($art['pic'])){?><img src="images/html/ico_camera.jpg" width="15" height="11"><?php }?></td>
+						  <td class="unnamed3" width="16%" height="16">[<?php echo date('Y-m-d',strtotime($art['addtime']))?>]</td>
 						</tr>
 						<tr> 
 						  <td colspan="2" class="unnamed7"><img src="images/html/63.jpg" width="719" height="5"></td>
@@ -78,10 +85,10 @@
 						</td>
 					<?php }else{?>
 						<td width="8%" valign="middle" height="5">
-							<a href="<?php echo site_url('html/show/lists/'.$cate['id'].'/'.$cate['pid'].'/'.$first_page);?>"><img src="images/html/shouye.jpg" width="45" height="21" class="unnamed8"></a>
+							<a href="<?php echo site_url('html/show/lists/'.$category['id'].'/'.$category['pid'].'/'.$first_page);?>"><img src="images/html/shouye.jpg" width="45" height="21" class="unnamed8"></a>
 						</td>
 						<td width="9%" valign="middle" height="5">
-							<a href="<?php echo site_url('html/show/lists/'.$cate['id'].'/'.$cate['pid'].'/'.$prev_page);?>"><img src="images/html/shangye.jpg" width="54" height="21" class="unnamed8"></a>
+							<a href="<?php echo site_url('html/show/lists/'.$category['id'].'/'.$category['pid'].'/'.$prev_page);?>"><img src="images/html/shangye.jpg" width="54" height="21" class="unnamed8"></a>
 						</td>			
 					<?php }?>				
 				
@@ -94,10 +101,10 @@
 					</td>
 					<?php }else{?>
 						<td width="9%" valign="middle" height="5">
-							<a href="<?php echo site_url('html/show/lists/'.$cate['id'].'/'.$cate['pid'].'/'.$next_page);?>"><img src="images/html/xiaye.jpg" width="54" height="21" class="unnamed8"></a>					
+							<a href="<?php echo site_url('html/show/lists/'.$category['id'].'/'.$category['pid'].'/'.$next_page);?>"><img src="images/html/xiaye.jpg" width="54" height="21" class="unnamed8"></a>					
 						</td>
 						<td width="3%" valign="middle" height="5">
-							<a href="<?php echo site_url('html/show/lists/'.$cate['id'].'/'.$cate['pid'].'/'.$last_page);?>"><img src="images/html/weiye.jpg" width="45" height="21" class="unnamed8"></a>
+							<a href="<?php echo site_url('html/show/lists/'.$category['id'].'/'.$category['pid'].'/'.$last_page);?>"><img src="images/html/weiye.jpg" width="45" height="21" class="unnamed8"></a>
 						</td>				
 					<?php }?>				
 					<td width="40%" valign="middle" class="unnamed3" height="5"> 　跳转到 
@@ -105,7 +112,7 @@
 					  <?php if($total_page == 1){?>
 						<img src="images/html/go.jpg" width="28" height="18" class="unnamed8">
 					  <?php }else{?>
-						<a href="javascript:goto_page('<?php echo site_url('html/show/lists/'.$cate['id'].'/'.$cate['pid']);?>');"><img src="images/html/go.jpg" width="28" height="18" class="unnamed8"></a>
+						<a href="javascript:goto_page('<?php echo site_url('html/show/lists/'.$category['id'].'/'.$category['pid']);?>');"><img src="images/html/go.jpg" width="28" height="18" class="unnamed8"></a>
 					  <?php }?>
 					  </td>
                       </tr>

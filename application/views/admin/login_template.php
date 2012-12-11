@@ -35,8 +35,7 @@ href="<?php echo base_url();?>images/admin/User_Login.css" type=text/css rel=sty
   <DD id=user_bottom>
   <UL>
     <LI class=user_bottom_l></LI>
-    <LI class=user_bottom_c><SPAN style="MARGIN-TOP: 40px">后台管理1.0 <A 
-    href=""></A></SPAN> </LI>
+          <LI class=user_bottom_c> </LI>
     <LI class=user_bottom_r></LI></UL></DD></DL></DIV><SPAN id=ValrUserName 
 style="DISPLAY: none; COLOR: red"></SPAN><SPAN id=ValrPassword 
 style="DISPLAY: none; COLOR: red"></SPAN><SPAN id=ValrValidateCode 
